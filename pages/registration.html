@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="../css/stylereg.css">
+</head>
+<body>
+    <!-- Шапка с навигацией -->
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="login.php">Авторизация</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="products.php">Товары</a></li>
+                <li><a href="search.html">Поиск</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="registration-container">
+        <h1>Регистрация</h1>
+        <form id="registration-form" method="POST" action="../scripts/reg.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label for="first-name">Имя:</label>
+                <input type="text" id="first-name" name="first-name" required>
+                <span class="error-message" id="first-name-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label for="last-name">Фамилия:</label>
+                <input type="text" id="last-name" name="last-name" required>
+                <span class="error-message" id="last-name-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label for="age">Возраст:</label>
+                <input type="number" id="age" name="age" min="1" required>
+                <span class="error-message" id="age-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label>Пол:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male" required> Мужской</label>
+                    <label><input type="radio" name="gender" value="female" required> Женский</label>
+                </div>
+                <span class="error-message" id="gender-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+                <span class="error-message" id="password-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label for="confirm-password">Повтор пароля:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <span class="error-message" id="confirm-password-error"></span>
+            </div>
+        
+            <div class="form-group">
+                <label for="picture">Фотография:</label>
+                <input type="file" id="picture" name="picture" accept="image/*">
+            </div>
+        
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="agree" name="agree" required>
+                    Я согласен на обработку персональных данных
+                </label>
+                <span class="error-message" id="agree-error"></span>
+            </div>
+        
+            <button type="submit" name="action">Зарегистрироваться</button>
+        </form>
+
+        <div id="success-message" class="hidden">
+            <p>Регистрация прошла успешно!</p>
+        </div>
+    </div>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>

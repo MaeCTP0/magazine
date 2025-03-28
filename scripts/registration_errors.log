@@ -1,0 +1,38 @@
+Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`emagazine`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roles`) REFERENCES `roles` (`id`))
+Error code: 23000
+SQLSTATE: 23000
+Driver error: 1452
+Error message: 
+Database error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`emagazine`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roles`) REFERENCES `roles` (`id`))
+Error code: 23000
+SQLSTATE: 23000
+Driver error: 1452
+Error message: 
+Array
+(
+    [message] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`emagazine`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roles`) REFERENCES `roles` (`id`))
+    [code] => 23000
+    [file] => C:\OSPanel\home\emagazine\scripts\functions.php
+    [line] => 100
+    [errorInfo] => Array
+        (
+            [0] => 23000
+            [1] => 1452
+            [2] => Cannot add or update a child row: a foreign key constraint fails (`emagazine`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roles`) REFERENCES `roles` (`id`))
+        )
+
+)
+Array
+(
+    [message] => SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'picture' cannot be null
+    [code] => 23000
+    [file] => C:\OSPanel\home\emagazine\scripts\functions.php
+    [line] => 105
+    [errorInfo] => Array
+        (
+            [0] => 23000
+            [1] => 1048
+            [2] => Column 'picture' cannot be null
+        )
+
+)

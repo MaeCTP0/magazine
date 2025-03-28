@@ -1,0 +1,115 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Шапка */
+header {
+    width: 100%;
+    background-color: #a89bb9;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.nav-menu li {
+    margin: 5px 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background-color: #8a7a8b;
+}
+
+/* Контейнер личного кабинета */
+.profile-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #6c5b7b;
+}
+
+.profile-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.profile-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #a89bb9;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #6c5b7b;
+    margin: 10px 0;
+}
+
+.profile-info strong {
+    color: #6c5b7b;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+#logout-button {
+    padding: 10px 20px;
+    background-color: #e57373; /* Пастельный красный */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#logout-button:hover {
+    background-color: #d9534f; /* Более темный красный */
+}

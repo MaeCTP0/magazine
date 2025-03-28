@@ -1,0 +1,239 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Шапка */
+header {
+    width: 100%;
+    background-color: #a89bb9;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.nav-menu li {
+    margin: 5px 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background-color: #8a7a8b;
+}
+
+/* Контейнер товара */
+.product-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #6c5b7b;
+}
+
+.product-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.product-image img {
+    width: 300px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 3px solid #a89bb9;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info p {
+    font-size: 16px;
+    color: #6c5b7b;
+    margin: 10px 0;
+}
+
+.product-info strong {
+    color: #6c5b7b;
+}
+
+.product-actions {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#product-quantity {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #d3c1d2;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    color: #6c5b7b;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#product-quantity:focus {
+    border-color: #a89bb9;
+    outline: none;
+}
+
+#add-to-cart-button {
+    padding: 10px 20px;
+    background-color: #81c784;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#add-to-cart-button:hover {
+    background-color: #66bb6a;
+}
+
+/* Раздел "О нас" */
+.about-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+.about-content p {
+    font-size: 16px;
+    color: #6c5b7b;
+    text-align: center;
+}
+
+/* Раздел "Авторизация" */
+.auth-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+.auth-content {
+    display: flex;
+    justify-content: center;
+}
+
+#auth-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+#auth-form .form-group {
+    margin-bottom: 15px;
+}
+
+#auth-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #6c5b7b;
+}
+
+#auth-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3c1d2;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    color: #6c5b7b;
+    font-size: 14px;
+}
+
+#auth-form .forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: #6c5b7b;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+#auth-form .forgot-password:hover {
+    text-decoration: underline;
+}
+
+#auth-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #a89bb9;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#auth-form button:hover {
+    background-color: #8a7a8b;
+}
+
+/* Подвал с контактами */
+.footer-container {
+    width: 100%;
+    background-color: #a89bb9;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content p {
+    font-size: 16px;
+    color: #ffffff;
+    margin: 5px 0;
+}
