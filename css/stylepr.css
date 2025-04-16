@@ -21,6 +21,31 @@ header {
     z-index: 1000;
 }
 
+.logo-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: white; /* Изменяем цвет на белый для лучшей видимости */
+    flex-shrink: 0; /* Запрещаем сжатие логотипа */
+}
+
+.logo-text {
+    white-space: nowrap; /* Запрещаем перенос текста */
+}
+
+.logo svg {
+    flex-shrink: 0; /* Запрещаем сжатие SVG */
+}
+
 nav {
     max-width: 1200px;
     margin: 0 auto;
@@ -28,29 +53,30 @@ nav {
 }
 
 .nav-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem;
     flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
 }
 
 .nav-menu li {
     margin: 5px 0;
 }
 
-.nav-menu a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
 .nav-menu a:hover {
-    background-color: #8a7a8b;
+    background-color: #8a7a8b; /* Более темный пастельный фиолетовый */
 }
 
 /* Контейнер товара */
@@ -120,7 +146,7 @@ h1, h2 {
     outline: none;
 }
 
-#add-to-cart-button {
+button[name="add-to-cart"] {
     padding: 10px 20px;
     background-color: #81c784;
     color: #ffffff;
@@ -131,7 +157,7 @@ h1, h2 {
     transition: background-color 0.3s ease;
 }
 
-#add-to-cart-button:hover {
+button[name="add-to-cart"]:hover {
     background-color: #66bb6a;
 }
 

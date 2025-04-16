@@ -1,7 +1,7 @@
 <?php
 // Подключаемся к БД
 require_once '../scripts/db.php';
-
+session_start();
 // Проверяем, что id передан и это число
 if (!isset($_GET['id'])) {
     die("Ошибка: ID товара не указан.");
@@ -34,19 +34,33 @@ try {
 <body>
     <!-- Шапка с навигацией -->
     <header>
+    <div class="header-container">
+            <div class="logo-nav-wrapper">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 5L10 20H25L15 35" stroke="#6C5B7B" stroke-width="3"/>
+                        <circle cx="28" cy="28" r="6" fill="#81C784" stroke="#6C5B7B"/>
+                    </svg>
+                </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#auth">Авторизация</a></li>
-                <li><a href="registration.html">Регистрация</a></li>
-                <li><a href="profile.html">Личный кабинет</a></li>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                    <li><a href="#auth">Авторизация</a></li>
+                    <li><a href="registration.html">Регистрация</a></li>
+                    <?php endif; ?>
+                <li><a href="index.php">Главная</a></li>
                 <li><a href="products.php">Товары</a></li>
-                <li><a href="cart.html">Корзина</a></li>
-                <li><a href="orders.html">Заказы</a></li>
-                <li><a href="search.html">Поиск</a></li>
+                <li><a href="#about">О нас</a></li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <li><a href="set_of_products.php">Корзина</a></li>
+                    <li><a href="zakaz.php">Заказы</a></li>
+                    <li><a href="account.php">Личный кабинет</a></li>
+                    <?php endif; ?>
                 <li><a href="#contacts">Контакты</a></li>
             </ul>
         </nav>
+        </div>
+</div>
     </header>
 
     <!-- Основной контент -->
@@ -57,7 +71,7 @@ try {
             <div class="product-content">
                 <!-- Картинка товара -->
                 <div class="product-image">
-                    <img src="/scripts/<?= $product['image'] ?>" alt="<?= $product['title'] ?>">
+                    <img src="/<?= $product['image'] ?>" alt="<?= $product['title'] ?>">
                 </div>
 
                <!-- Информация о товаре -->
@@ -69,14 +83,15 @@ try {
 
                     <!-- Поле для выбора количества -->
                     <div class="form-group">
-                        <label for="product-quantity">Количество:</label>
-                        <input type="number" id="product-quantity" name="product-quantity" min="1" max="10" value="1">
+                        <label for="product-amount">Количество:</label>
                     </div>
 
                     <!-- Кнопка "Добавить в корзину" -->
-                    <div class="product-actions">
-                        <button id="add-to-cart-button">Добавить в корзину</button>
-                    </div>
+                    <form action="../scripts/add_to_cart.php" method="post" id="add-to-cart-form">
+                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                        <input type="number" name="amount" id="product-amount" value="1" min="1">
+                        <button type="submit" name="add-to-cart">Добавить в корзину</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -99,18 +114,19 @@ try {
     </div>
 </section>
 
-        <!-- Раздел "Авторизация" -->
+    <?php if (!isset($_SESSION['user_id'])): ?>
+        <!-- Раздел "Авторизация" (только для неавторизованных) -->
         <section id="auth" class="auth-container">
             <h2>Авторизация</h2>
             <div class="auth-content">
-                <form id="auth-form">
+                <form action="../pages/login.php" method="post" id="auth-form">
                     <div class="form-group">
-                        <label for="auth-email">E-mail:</label>
-                        <input type="email" id="auth-email" name="auth-email" required>
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="auth-password">Пароль:</label>
-                        <input type="password" id="auth-password" name="auth-password" required>
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" name="password" required>
                     </div>
                     <div class="form-group">
                         <a href="#forgot-password" class="forgot-password">Забыли пароль?</a>
@@ -119,6 +135,7 @@ try {
                 </form>
             </div>
         </section>
+    <?php endif; ?>
     </div>
 
     <!-- Подвал с контактами -->

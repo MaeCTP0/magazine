@@ -1,21 +1,42 @@
-/* Общие стили */
-body {
+ /* Общие стили */
+ body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
 }
 
 /* Шапка */
 header {
     width: 100%;
-    background-color: #a89bb9; /* Пастельный фиолетовый */
+    background-color: #a89bb9;
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: white; /* Изменяем цвет на белый для лучшей видимости */
+    flex-shrink: 0; /* Запрещаем сжатие логотипа */
+}
+
+.logo-text {
+    white-space: nowrap; /* Запрещаем перенос текста */
+}
+
+.logo svg {
+    flex-shrink: 0; /* Запрещаем сжатие SVG */
 }
 
 nav {
@@ -25,122 +46,189 @@ nav {
 }
 
 .nav-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem;
     flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
 }
 
 .nav-menu li {
     margin: 5px 0;
 }
 
-.nav-menu a {
-    text-decoration: none;
-    color: #ffffff; /* Белый текст */
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
 .nav-menu a:hover {
     background-color: #8a7a8b; /* Более темный пастельный фиолетовый */
 }
 
-/* Контейнер регистрации */
-.registration-container {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
+/* Основной контейнер корзины */
+.cart-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
-h1 {
+.cart-title {
+    color: #6c5b7b;
     text-align: center;
+    margin-bottom: 30px;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+/* Стили для товаров в корзине */
+.cart-item {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cart-item-image-container {
+    flex: 0 0 200px;
+    margin-right: 20px;
+}
+
+.cart-item-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item-info h3 {
+    margin: 0 0 10px 0;
     color: #6c5b7b;
 }
 
-/* Остальные стили (оставьте без изменений) */
-.form-group {
+.cart-item-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #e57373;
+    margin: 10px 0;
+}
+
+.cart-item-actions {
+    margin-top: auto;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
     margin-bottom: 15px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.quantity-control label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.quantity-control input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.cart-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-update {
+    background: #81c784;
+    color: white;
+}
+
+.btn-remove {
+    background: #e57373;
+    color: white;
+}
+
+/* Итого и оформление заказа */
+.cart-summary {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.total-price {
+    font-size: 1.5rem;
     font-weight: bold;
     color: #6c5b7b;
+    text-align: right;
+    margin-bottom: 20px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d3c1d2;
-    border-radius: 6px;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
-    color: #6c5b7b;
-    font-size: 14px;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus {
-    border-color: #a89bb9;
-    outline: none;
-}
-
-.radio-group {
-    display: flex;
-    gap: 10px;
-}
-
-.radio-group label {
-    color: #6c5b7b;
-    font-weight: normal;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #a89bb9;
-    color: #ffffff;
+.btn-checkout {
+    background: #6c5b7b;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    display: block;
+    margin-left: auto;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #8a7a8b;
-}
-
-.error-message {
-    color: #e57373;
-    font-size: 14px;
-    display: none;
-    margin-top: 5px;
-}
-
-.hidden {
-    display: none;
-}
-
-#success-message {
-    color: #81c784;
+/* Подвал */
+footer {
+    background-color: #a89bb9;
+    padding: 30px 0;
     text-align: center;
-    margin-top: 20px;
-    font-size: 16px;
+    margin-top: 50px;
+}
+
+.footer-content p {
+    color: white;
+    margin: 5px 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+    }
+    
+    .cart-item-image-container {
+        flex: 0 0 auto;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .cart-item-image {
+        height: auto;
+        max-height: 200px;
+    }
 }

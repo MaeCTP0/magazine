@@ -3,7 +3,7 @@ session_start();
 
 // Проверка авторизации
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php'); // Убрал ../scripts/ для единообразия
+    header('Location: login.php');
     exit();
 }
 
@@ -50,16 +50,26 @@ try {
 <body>
     <!-- Шапка с навигацией -->
     <header>
+    <div class="header-container">
+    <div class="logo-nav-wrapper">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 5L10 20H25L15 35" stroke="#6C5B7B" stroke-width="3"/>
+                        <circle cx="28" cy="28" r="6" fill="#81C784" stroke="#6C5B7B"/>
+                    </svg>
+                </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="about.html">О нас</a></li>
+                <li><a href="index.php">Главная</a></li>
                 <li><a href="products.php">Товары</a></li>
-                <li><a href="cart.html">Корзина</a></li>
-                <li><a href="orders.html">Заказы</a></li>
-                <li><a href="search.html">Поиск</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="../pages/set_of_products.php">Корзина</a></li>
+                <li><a href="zakaz.php">Заказы</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#contacts">Контакты</a></li>
             </ul>
         </nav>
+        </div>
+        </div>
     </header>
 
     <!-- Основной контент -->
@@ -85,11 +95,36 @@ try {
                 <p><strong>Возраст:</strong> <span id="profile-age"><?= htmlspecialchars($userData['age']) ?></span></p>
                 <p><strong>Пол:</strong> <span id="profile-gender"><?= $genderText ?></span></p>
                 <p>
-                    <button id="logout-button" onclick="location.href='edit-profile.php'">Редактировать профиль</button>
                     <button id="logout-button" onclick="location.href='../scripts/logout.php'">Выйти</button>
                 </p>
             </div>
         </div>
     </div>
+    <!-- Раздел "О нас" -->
+        <section id="about" class="about-container">
+        <h2>О нас</h2>
+            <div class="about-content">
+                <p>
+                    Добро пожаловать в <strong>BystroKorzin</strong> — ваш надежный партнёр в мире высокопроизводительных видеокарт! 
+                    Мы специализируемся на предоставлении самых современных и мощных графических решений для геймеров, дизайнеров и энтузиастов.
+                </p>
+                <p>
+                    Наша миссия — сделать покупку видеокарт быстрой, удобной и приятной. 
+                    В <strong>BystroKorzin</strong> вы найдёте только проверенные бренды, такие как NVIDIA, AMD и другие.
+                <p>
+                    Мы гордимся тем, что предлагаем товары по доступным ценам, оперативную доставку и отличный сервис. 
+                    Ваше удовлетворение — наш главный приоритет!
+                </p>
+            </div>
+        </section>
+        <!-- Подвал с контактами -->
+        <footer id="contacts" class="footer-container">
+                <h2>Контакты</h2>
+                <div class="footer-content">
+                    <p>Телефон: +7 (999) 123-45-67</p>
+                    <p>E-mail: info@emagazine.ru</p>
+                    <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+                </div>
+            </footer>
 </body>
 </html>

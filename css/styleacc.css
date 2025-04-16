@@ -18,6 +18,30 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.logo-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: white; /* Изменяем цвет на белый для лучшей видимости */
+    flex-shrink: 0; /* Запрещаем сжатие логотипа */
+}
+
+.logo-text {
+    white-space: nowrap; /* Запрещаем перенос текста */
+}
+
+.logo svg {
+    flex-shrink: 0; /* Запрещаем сжатие SVG */
+}
 nav {
     max-width: 1200px;
     margin: 0 auto;
@@ -25,29 +49,30 @@ nav {
 }
 
 .nav-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem;
     flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
 }
 
 .nav-menu li {
     margin: 5px 0;
 }
 
-.nav-menu a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
 .nav-menu a:hover {
-    background-color: #8a7a8b;
+    background-color: #8a7a8b; /* Более темный пастельный фиолетовый */
 }
 
 /* Контейнер личного кабинета */
@@ -61,7 +86,7 @@ nav {
     margin-top: 20px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #6c5b7b;
@@ -112,4 +137,34 @@ h1 {
 
 #logout-button:hover {
     background-color: #d9534f; /* Более темный красный */
+}
+/* Раздел "О нас" */
+.about-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+.about-content p {
+    font-size: 16px;
+    color: #6c5b7b;
+    text-align: center;
+}
+/* Подвал с контактами */
+.footer-container {
+    width: 100%;
+    background-color: #a89bb9;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content p {
+    font-size: 16px;
+    color: #ffffff;
+    margin: 5px 0;
 }

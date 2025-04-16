@@ -18,6 +18,31 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.logo-nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: white; /* Изменяем цвет на белый для лучшей видимости */
+    flex-shrink: 0; /* Запрещаем сжатие логотипа */
+}
+
+.logo-text {
+    white-space: nowrap; /* Запрещаем перенос текста */
+}
+
+.logo svg {
+    flex-shrink: 0; /* Запрещаем сжатие SVG */
+}
+
 nav {
     max-width: 1200px;
     margin: 0 auto;
@@ -25,122 +50,237 @@ nav {
 }
 
 .nav-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem;
     flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
 }
 
 .nav-menu li {
     margin: 5px 0;
 }
 
-.nav-menu a {
-    text-decoration: none;
-    color: #ffffff; /* Белый текст */
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
 .nav-menu a:hover {
     background-color: #8a7a8b; /* Более темный пастельный фиолетовый */
 }
 
-/* Контейнер регистрации */
-.registration-container {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+footer {
     width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
+    background: #a89bb9;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Для прижатия к низу */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+/* Стили страницы заказов */
+.orders-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.orders-filters {
+    margin: 20px 0;
+}
+
+.orders-filters select {
+    padding: 8px 12px;
+    border: 1px solid #d3c1d2;
+    border-radius: 6px;
+    background-color: #f5f5f5;
     color: #6c5b7b;
 }
 
-/* Остальные стили (оставьте без изменений) */
-.form-group {
-    margin-bottom: 15px;
+.order-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-header > span {
+    font-size: 14px;
+}
+
+.order-number {
     font-weight: bold;
     color: #6c5b7b;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d3c1d2;
-    border-radius: 6px;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
-    color: #6c5b7b;
+.order-date {
+    color: #666;
+}
+
+.order-status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.order-status.completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.order-status.canceled {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.order-total {
+    font-weight: bold;
+    color: #e57373;
+}
+
+.order-products {
+    padding: 15px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.product-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.product-info p {
+    margin: 0;
+    color: #666;
     font-size: 14px;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus {
-    border-color: #a89bb9;
-    outline: none;
-}
-
-.radio-group {
+.order-actions {
     display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+    border-top: 1px solid #eee;
     gap: 10px;
 }
 
-.radio-group label {
-    color: #6c5b7b;
-    font-weight: normal;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #a89bb9;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #8a7a8b;
-}
-
-.error-message {
-    color: #e57373;
+.order-actions button {
+    padding: 8px 16px;
+    border-radius: 4px;
     font-size: 14px;
-    display: none;
-    margin-top: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.hidden {
-    display: none;
+.repeat-order {
+    background: #a89bb9;
+    color: white;
+    border: none;
 }
 
-#success-message {
-    color: #81c784;
+.repeat-order:hover {
+    background: #8a7a8b;
+}
+
+.order-details {
+    background: white;
+    color: #6c5b7b;
+    border: 1px solid #d3c1d2;
+}
+
+.order-details:hover {
+    background: #f5f5f5;
+}
+
+.order-status.processing {
+    background: #fff8e1;
+    color: #ff8f00;
+}
+
+/* Анимация загрузки */
+.loading-orders {
     text-align: center;
-    margin-top: 20px;
-    font-size: 16px;
+    padding: 20px;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #a89bb9;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Адаптивность */
+@media (max-width: 768px) {
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .order-actions {
+        justify-content: center;
+    }
 }

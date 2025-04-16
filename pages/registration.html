@@ -9,15 +9,25 @@
 <body>
     <!-- Шапка с навигацией -->
     <header>
+        <div class="header-container">
+            <div class="logo-nav-wrapper">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 5L10 20H25L15 35" stroke="#6C5B7B" stroke-width="3"/>
+                        <circle cx="28" cy="28" r="6" fill="#81C784" stroke="#6C5B7B"/>
+                    </svg>
+                </div>
         <nav>
             <ul class="nav-menu">
                 <li><a href="login.php">Авторизация</a></li>
-                <li><a href="about.html">О нас</a></li>
+                <li><a href="index.php">Главная</a></li>
                 <li><a href="products.php">Товары</a></li>
-                <li><a href="search.html">Поиск</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+
             </ul>
         </nav>
+        </div>
+    </div>
     </header>
 
     <!-- Основной контент -->
@@ -89,6 +99,15 @@
             <p>Регистрация прошла успешно!</p>
         </div>
     </div>
+     <!-- Подвал с контактами -->
+     <footer id="contacts" class="footer-container">
+        <h2>Контакты</h2>
+        <div class="footer-content">
+            <p>Телефон: +7 (999) 123-45-67</p>
+            <p>E-mail: info@emagazine.ru</p>
+            <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+        </div>
+    </footer>
 
     <script src="../scripts/script.js"></script>
 </body>

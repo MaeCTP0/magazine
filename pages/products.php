@@ -1,11 +1,47 @@
 <?php
 require_once '../scripts/db.php';
+session_start();
 
-try {
+$searchQuery = isset($_GET['search_query']) ? trim($_GET['search_query']) : '';
+$products = [];
+
+if (!empty($searchQuery)) {
+    // Разбиваем запрос на отдельные слова
+    $keywords = explode(' ', $searchQuery);
+    $keywords = array_filter($keywords); // Удаляем пустые элементы
+    
+    // Формируем условия для каждого слова
+    $conditions = [];
+    $params = [];
+    
+    foreach ($keywords as $i => $keyword) {
+        $conditions[] = "(title LIKE :keyword$i OR description LIKE :keyword$i)";
+        $params[":keyword$i"] = "%$keyword%";
+    }
+    
+    // Собираем полный запрос
+    $sql = "SELECT * FROM products";
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(' AND ', $conditions);
+    }
+    
+    // Выполняем запрос
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Если ничего не найдено
+    if (empty($products)) {
+        $noResultsMessage = "По запросу \"".htmlspecialchars($searchQuery)."\" ничего не найдено";
+    }
+} else {
+    // Если нет поискового запроса, показываем все товары (или ограниченное количество)
+    try{
     $stmt = $pdo->query("SELECT * FROM products");
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Ошибка при загрузке товаров: " . $e->getMessage());
+    } catch (PDOException $e) {
+        die("Ошибка при загрузке товаров: " . $e->getMessage());
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -15,51 +51,85 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BystroKorzin - Магазин видеокарт</title>
     <link rel="stylesheet" href="../css/styleprod.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Шапка -->
     <header>
-        <nav>
+    <div class="header-container">
+            <div class="logo-nav-wrapper">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 5L10 20H25L15 35" stroke="#6C5B7B" stroke-width="3"/>
+                        <circle cx="28" cy="28" r="6" fill="#81C784" stroke="#6C5B7B"/>
+                    </svg>
+                </div>
+    <nav>
             <ul class="nav-menu">
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                    <li><a href="#auth">Авторизация</a></li>
+                    <li><a href="registration.html">Регистрация</a></li>
+                    <?php endif; ?>
+                <li><a href="index.php">Главная</a></li>
                 <li><a href="#about">О нас</a></li>
-                <li><a href="#auth">Авторизация</a></li>
-                <li><a href="registration.html">Регистрация</a></li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <li><a href="set_of_products.php">Корзина</a></li>
+                    <li><a href="zakaz.php">Заказы</a></li>
+                    <li><a href="account.php">Личный кабинет</a></li>
+                    <?php endif; ?>
                 <li><a href="#contacts">Контакты</a></li>
             </ul>
         </nav>
+                <div class="search-container">
+                    <form method="GET" action="" class="search-form">
+                        <input type="text" name="search_query" placeholder="Поиск видеокарт..." 
+                            value="<?= isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : '' ?>"
+                            class="search-input">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+    </div>
     </header>
 
     <!-- Основной контент -->
     <main>
-        <!-- Секция товаров -->
+        
+                    <!-- Секция отображения поиска -->
         <section id="products" class="products-section">
-            <h1>Видеокарты в наличии</h1>
-            <div class="products-grid">
-                <!-- Вывод всех товаров -->
-                <div class="products-grid">
-                    <?php foreach ($products as $product): ?>
-                        <!-- Формируем ссылку с id товара из БД -->
-                            <a href="product.php?id=<?= $product['id'] ?>" class="product-link">
-                        <div class="product-card">
-                            <?php
-                                // Проверяем, есть ли файл
-                                $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/' . $product['image'];
-                                $imageUrl = file_exists($imagePath) ? "/{$product['image']}" : "/uploads/default.jpg";
-                            ?>
-                             <img src="/scripts/<?= $product['image'] ?>" alt="<?= $product['image'] ?>">
-                            <h3><?= htmlspecialchars($product['title']) ?></h3>
-                            <p class="price">₽<?= number_format($product['price'], 0, '', ' ') ?></p>
-                            <div class="product-actions">
-                                <input type="number" min="1" max="5" value="1">
-                                <button>В корзину</button>
-                            </div>
-                        </div>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
+    <?php if (!empty($searchQuery)): ?>
+        <h1>Результаты поиска: "<?= htmlspecialchars($searchQuery) ?>"</h1>
+        <?php if (isset($noResultsMessage)): ?>
+            <p class="no-results"><?= $noResultsMessage ?></p>
+            <a href="products.php" class="back-link">← Вернуться ко всем товарам</a>
+        <?php endif; ?>
+    <?php else: ?>
+        <h1>Видеокарты в наличии</h1>
+    <?php endif; ?>
     
+    <div class="products-grid">
+        <?php foreach ($products as $product): ?>
+            <a href="product.php?id=<?= $product['id'] ?>" class="product-link">
+                <div class="product-card">
+                    <?php
+                        // Проверяем наличие изображения
+                        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/' . $product['image'];
+                        $imageUrl = file_exists($imagePath) ? "/{$product['image']}" : "/images/default.jpg";
+                    ?>
+                    <img src="<?= $imageUrl ?>" alt="<?= htmlspecialchars($product['title']) ?>">
+                    <h3><?= htmlspecialchars($product['title']) ?></h3>
+                    <p class="price">₽<?= number_format($product['price'], 0, '', ' ') ?></p>
+                    
+                    <form class="add-to-cart-form" data-product-id="<?= $product['id'] ?>">
+                        <button type="button" class="add-to-cart">В корзину</button>
+                    </form>
+                </div>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</section>
         
         <!-- Раздел "О нас" -->
                 <section id="about" class="about-container">
@@ -79,26 +149,28 @@ try {
                     </div>
                 </section>
 
-        <!-- Раздел "Авторизация" -->
-        <section id="auth" class="auth-container">
-            <h2>Авторизация</h2>
-            <div class="auth-content">
-                <form id="auth-form">
-                    <div class="form-group">
-                        <label for="auth-email">E-mail:</label>
-                        <input type="email" id="auth-email" name="auth-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="auth-password">Пароль:</label>
-                        <input type="password" id="auth-password" name="auth-password" required>
-                    </div>
-                    <div class="form-group">
-                        <a href="#forgot-password" class="forgot-password">Забыли пароль?</a>
-                    </div>
-                    <button type="submit">Войти</button>
-                </form>
-            </div>
-        </section>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            <!-- Раздел "Авторизация" (только для неавторизованных) -->
+            <section id="auth" class="auth-container">
+                <h2>Авторизация</h2>
+                <div class="auth-content">
+                    <form action="../pages/login.php" method="post" id="auth-form">
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Пароль:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <a href="#forgot-password" class="forgot-password">Забыли пароль?</a>
+                        </div>
+                        <button type="submit">Войти</button>
+                    </form>
+                </div>
+            </section>
+        <?php endif; ?>
     
     </main>
 
